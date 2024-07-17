@@ -1,7 +1,3 @@
-Sure, here's the updated README file including the data download link from Kaggle:
-
----
-
 # Flight Dashboard Project
 
 ## Overview
