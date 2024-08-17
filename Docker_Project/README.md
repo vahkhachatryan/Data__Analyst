@@ -20,7 +20,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:vahkhachatryan/Data__Analyst.git
    cd Docker_project
    ```
 
@@ -33,7 +33,7 @@ Before you begin, ensure you have the following installed:
 3. **Run the script**:
 
    ```bash
-   python main.py
+   python3 main.py
    ```
 
 ### Option 2: Run with Docker
@@ -41,12 +41,12 @@ Before you begin, ensure you have the following installed:
 1. **Build the Docker image**:
 
    ```bash
-   docker build -t random-data-generator .
+   docker build -t main .
    ```
 
 2. **Run the Docker container**:
 
    ```bash
-   docker run --rm random-data-generator
+   docker run --rm main
    ```
 
