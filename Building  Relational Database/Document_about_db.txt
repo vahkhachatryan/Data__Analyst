@@ -1,0 +1,124 @@
+# **Hotel Database Management System Documentation**
+
+## **1. Overview**
+The Hotel Database Management System (DBMS) is designed to efficiently manage hotel operations, including room bookings, customer feedback, staff management, services usage, payments, and loyalty programs. The database ensures smooth hotel operations by keeping track of key information related to hotels, rooms, staff, services, customers, and transactions.
+
+## **2. Schema Explanation**
+
+### **2.1 Hotels**
+This table stores the information about each hotel.
+- **Hotel_ID** (int): Unique identifier for each hotel.
+- **Location** (varchar): The location of the hotel.
+- **Rating** (int): Star rating of the hotel (e.g., 3, 4, or 5 stars).
+- **Number_of_rooms** (int): Total number of rooms in the hotel.
+
+### **2.2 Rooms**
+This table stores room details for each hotel.
+- **Room_ID** (int): Unique identifier for each room.
+- **Hotel_ID** (int): Foreign key referencing the hotel to which the room belongs.
+- **Room_Number** (int): Room number within the hotel.
+- **Rate_Per_Night** (numeric): Cost per night to stay in the room.
+- **Floor** (int): The floor on which the room is located.
+- **Occupancy_Status** (bool): Whether the room is currently occupied.
+- **Last_Maintenance_Date** (date): The date when the room was last serviced.
+- **Room_Type_ID** (int): Foreign key referencing the room type.
+
+### **2.3 Room_Type**
+This table defines the types of rooms available.
+- **Type_ID** (int): Unique identifier for each room type.
+- **Name** (varchar): Name of the room type (e.g., Single, Double, Suite).
+- **Description** (text): Description of the room type.
+- **Number_of_Guests** (int): Maximum occupancy for the room type.
+
+### **2.4 Staff**
+This table holds details of hotel staff.
+- **Staff_ID** (int): Unique identifier for each staff member.
+- **First_Name** (varchar): First name of the staff member.
+- **Last_Name** (varchar): Last name of the staff member.
+- **Position** (varchar): Job role (e.g., Receptionist, Manager).
+- **Department** (varchar): Department the staff member works in (e.g., Housekeeping, Front Desk).
+- **Hotel_ID** (int): Foreign key referencing the hotel where the staff works.
+- **Salary** (numeric): The salary of the staff member.
+- **Hire_date** (date): Date when the staff member was hired.
+
+### **2.5 Customers**
+This table holds customer details.
+- **Customer_ID** (int): Unique identifier for each customer.
+- **First_Name** (varchar): First name of the customer.
+- **Last_Name** (varchar): Last name of the customer.
+- **Email** (varchar): Customer’s email address.
+- **Phone_Number** (varchar): Customer’s contact number.
+- **Loyalty_Program_ID** (int): Foreign key referencing the loyalty program, if any, the customer is enrolled in.
+
+### **2.6 Bookings**
+This table stores booking details.
+- **Booking_ID** (int): Unique identifier for each booking.
+- **Customer_ID** (int): Foreign key referencing the customer making the booking.
+- **Room_ID** (int): Foreign key referencing the room being booked.
+- **Booking_Date** (timestamp): Date and time when the booking was made.
+- **CheckIn_Date** (date): Date when the customer checks in.
+- **Check_Out_Date** (date): Date when the customer checks out.
+- **Booking_Method** (varchar): The method used to make the booking (e.g., Online, In-person).
+
+### **2.7 Payments**
+This table tracks payment details for bookings and service usage.
+- **Payment_ID** (int): Unique identifier for each payment.
+- **Booking_ID** (int): Foreign key referencing the booking for which the payment was made.
+- **Payment_Date** (date): Date when the payment was made.
+- **Amount** (numeric): Amount paid.
+- **Currency** (varchar): The currency used for the payment.
+- **Payment_Status** (varchar): Status of the payment (e.g., Paid, Pending).
+- **Service_Usage_ID** (int): Foreign key referencing any associated service usage.
+- **Payment_Method** (varchar): The method used for the payment (e.g., Credit Card, Cash).
+
+### **2.8 Services**
+This table stores details of the services offered by the hotel.
+- **Service_ID** (int): Unique identifier for each service.
+- **Service_Name** (varchar): Name of the service (e.g., Spa, Room Service).
+- **Hotel_ID** (int): Foreign key referencing the hotel offering the service.
+- **Description** (text): Description of the service.
+- **Price** (numeric): The cost of the service.
+
+### **2.9 Services_Usage**
+This table tracks the usage of hotel services by guests.
+- **Service_Usage_ID** (int): Unique identifier for each instance of service usage.
+- **Booking_ID** (int): Foreign key referencing the booking using the service.
+- **Service_ID** (int): Foreign key referencing the service being used.
+- **Usage_Date** (date): Date when the service was used.
+
+### **2.10 Loyalty_Programs**
+This table stores information about customer loyalty programs.
+- **Loyalty_Program_ID** (int): Unique identifier for each loyalty program.
+- **Program_Name** (varchar): Name of the loyalty program.
+- **Description** (text): Description of the program.
+- **Points_Accrued** (int): Points accumulated by the customer in the program.
+- **Tier** (varchar): Loyalty tier (e.g., Silver, Gold, Platinum).
+- **Benefits** (text): Description of the benefits offered in the program.
+
+### **2.11 Feedbacks**
+This table captures feedback provided by customers after their stay.
+- **Feedback_ID** (int): Unique identifier for each feedback entry.
+- **Booking_ID** (int): Foreign key referencing the booking for which the feedback is provided.
+- **Feedback_Text** (text): The text of the feedback.
+- **Rating** (int): Rating given by the customer (typically from 1 to 5).
+- **Feedback_Date** (date): Date when the feedback was submitted.
+- **Service_Usage_ID** (int): Foreign key referencing any service used by the customer related to the feedback.
+
+### **2.12 Cancels**
+This table records booking cancellations.
+- **Cancel_ID** (int): Unique identifier for each cancellation.
+- **Booking_ID** (int): Foreign key referencing the cancelled booking.
+- **Cancel_Date** (timestamp): Date and time when the booking was cancelled.
+- **Cancel_Reason** (varchar): Reason for the cancellation.
+- **Refund_Amount** (numeric): Amount refunded to the customer for the cancellation.
+
+## **3. Relationships Between Tables**
+- **Hotel and Rooms**: A hotel can have many rooms (`Hotel_ID` is a foreign key in the `Rooms` table).
+- **Hotel and Staff**: Each staff member works at a hotel (`Hotel_ID` is a foreign key in the `Staff` table).
+- **Bookings and Customers**: Each booking is linked to a customer (`Customer_ID` in the `Bookings` table).
+- **Bookings and Payments**: Payments are linked to bookings (`Booking_ID` in the `Payments` table).
+- **Rooms and Bookings**: Each booking involves a room (`Room_ID` in the `Bookings` table).
+- **Bookings and Services Usage**: Bookings may include service usage (`Booking_ID` in the `Services_Usage` table).
+- **Customers and Loyalty Programs**: Customers can enroll in a loyalty program (`Loyalty_Program_ID` in the `Customers` table).
+
+
