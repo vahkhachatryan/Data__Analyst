@@ -103,28 +103,6 @@ This project analyzes the impact of work environment on mental health using data
 
 
 
-## Installation for Fonts on All OS
-To ensure correct font display in your notebooks and Power BI dashboards, install fonts as follows:
-
-### Windows
-1. Download font files.
-2. Right-click on each file and select "Install."
-
-### macOS
-1. Download font files.
-2. Double-click each file and click "Install Font."
-
-### Linux
-1. Download font files.
-2. Copy them to `/usr/share/fonts`:
-   ```bash
-   sudo cp /path/to/font.ttf /usr/share/fonts
-   ```
-3. Refresh the font cache:
-   ```bash
-   sudo fc-cache -fv
-   ```
-
 ---
 
 ## Additional Notes
