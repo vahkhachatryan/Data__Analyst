@@ -73,7 +73,7 @@ This project analyzes the impact of work environment on mental health using data
      CREATE DATABASE Final_Project;
      ```
 2. **Create Tables**:
-   - Open `tables_sql.txt` and run the SQL commands in the PostgreSQL query tool to create tables.
+   - Open `sql_tables.txt` and run the SQL commands in the PostgreSQL query tool to create tables.
 
 ### 3. Import Data into PostgreSQL
 - **Run Python Script**:
