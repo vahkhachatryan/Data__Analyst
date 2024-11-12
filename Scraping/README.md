@@ -49,6 +49,12 @@ pip install requests beautifulsoup4 pandas
    ```bash
    python about_item.py
    ```
+. **Get Item Details Review AI**:
+   Finally, run `final_code.ipynb` to scrape detailed information for each item, saving results in the Excel files (`phone info (1).csv`).
+
+   ```bash
+   python final_code.ipynb
+   ```   
 
 ## Output
 
